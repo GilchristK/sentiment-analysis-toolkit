@@ -1,2 +1,2 @@
 # sentiment-analysis-toolkit
-A social media sentiment analysis toolkit using AFINN 
+A social media sentiment analysis toolkit using AFINN Lexicon
