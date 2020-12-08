@@ -4,7 +4,7 @@
 import sys,getopt
 import os
 import pandas as pd
-
+from afinn import Afinn
 
 
 
@@ -12,10 +12,22 @@ import pandas as pd
 def read_excel(path):
     df = pd.read_excel(path)
     print(df)
+    #return df
+def analyse_sentiments(df):
+    # initialize afinn sentiment analyzer
+    af = Afinn()
+
+    # compute sentiment scores (polarity) and labels
+    afinn_scores = [af.score(text) for text in df.comment]
+    df['afinn'] = afinn_scores
+    df[['sentiment', 'afinn', 'text']].head(10)
+    
+    
+    
 
 def main():
     
-    read_excel(r'data_store\reviews_pseudoanonymised.xlsx')
+    df = read_excel(r'data_store\reviews_pseudoanonymised.xlsx')
 
 if __name__ == '__main__':
     main()
