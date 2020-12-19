@@ -7,6 +7,7 @@ import pandas as pd
 from afinn import Afinn
 
 #Demo Example Commit
+ExammpleCodeCommit = "Test" 
 
 #Given a path load excel document into pandas dataframe
 def read_excel(path):
