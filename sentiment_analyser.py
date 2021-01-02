@@ -29,8 +29,9 @@ def analyse_sentiments(df):
     df2 = pd.DataFrame([sentiment_category,afinn_scores]).T
     df2.columns = ['sentiment','score']
     df2['score'] = df2.score.astype('float')
-    print(df2.groupby(by=['sentiment']).describe())
+    #print(df2.groupby(by=['sentiment']).describe())
 
+    return df2
     #print(df2)
 
 
@@ -42,7 +43,8 @@ def analyse_sentiments(df):
 def main():
     
     df = read_excel(r'data_store\reviews_pseudoanonymised.xlsx')
-    analyse_sentiments(df)
+    df2 = analyse_sentiments(df)
+    print(df2)
 
 if __name__ == '__main__':
     main()
