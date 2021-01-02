@@ -4,21 +4,30 @@
 import sys,getopt
 import os
 import pandas as pd
+import plotly
 import plotly.express as plt
+import time
 from sentiment_analyser import *
+
+##generates a bar chart visualization using plotly
 def generateVisualization(df):
-    #df2 = df.groupby(by=['sentiment'])
-    #fig = plt.bar(df, x='sentiment', y='score',title='AFINN sentiment Analysis')
-    #fig.show()
+    print(df.groupby(by=['sentiment']).describe())
     df1 = df.groupby(["sentiment"]).count().reset_index()
     fig = plt.bar(df1,y=df.groupby(["sentiment"]).size(),x="sentiment",color='sentiment',title='AFINN sentiment Analysis') 
-    fig.show()
+    saveReport(fig)
+    #fig.show()
+
+def saveReport(fig):
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    
+    # html file
+    plotly.offline.plot(fig, filename='reports\sentiment_results-'+timestr+'.html')
 
 def main():
     
     df = read_excel(r'data_store\reviews_pseudoanonymised.xlsx')
     df2 = analyse_sentiments(df)
-    print(df2.describe())
+    #print(df2.describe())
     generateVisualization(df2)
 
 if __name__ == '__main__':
