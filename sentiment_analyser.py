@@ -13,7 +13,7 @@ ExammpleCodeCommit = "Test"
 def read_excel(path):
     df = pd.read_excel(path)
     return df
-    
+
 def analyse_sentiments(df):
     # initialize afinn sentiment analyzer
     af = Afinn()
@@ -22,7 +22,8 @@ def analyse_sentiments(df):
     afinn_scores = [af.score(text) for text in df.comment]
     
     #categorize the sentiments
-    sentiment_category = ['positive' if afinn_score > 0 else 'negative' if afinn_score < 0 else 'neutral' for afinn_score in afinn_scores]
+    sentiment_category = ['positive' if afinn_score > 0 else 'negative' 
+    if afinn_score < 0 else 'neutral' for afinn_score in afinn_scores]
     
     #sentiment statistics
     df2 = pd.DataFrame([sentiment_category,afinn_scores]).T
