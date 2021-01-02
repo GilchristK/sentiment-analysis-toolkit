@@ -62,9 +62,9 @@ def generateWordCloud(df):
 def main():
     
     df = read_excel(r'data_store\reviews_pseudoanonymised.xlsx')
-    #df2 = analyse_sentiments(df)
+    df2 = analyse_sentiments(df)
     #generate the bar chart
-    #generateVisualization(df2)
+    generateVisualization(df2)
 
     #generate the word cloud
     generateWordCloud(df)
